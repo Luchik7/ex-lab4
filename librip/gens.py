@@ -12,6 +12,15 @@ import random
 
 def field(items, *args):
     assert len(args) > 0
+    for dic in items:
+        slov = {}
+        for arg in args:
+            if(arg in dic.keys()) and (len(args) == 1):
+                yield dic[arg]
+            elif arg in dic is not None:
+                slov[arg] = dic[arg]
+        if len(slov) > 0 and len(args) > 1:
+            yield slov
     # Необходимо реализовать генератор 
 
 
@@ -20,5 +29,6 @@ def field(items, *args):
 # gen_random(1, 3, 5) должен выдать примерно 2, 2, 3, 2, 1
 # Hint: реализация занимает 2 строки
 def gen_random(begin, end, num_count):
-    pass
+    result = [random.randrange(begin, end + 1) for i in range(num_count)]
+    return result
     # Необходимо реализовать генератор
